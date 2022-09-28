@@ -1,6 +1,6 @@
 const { config } = require("dotenv");
 const { Pool } = require("pg");
-
+config();
 const dbCredentials = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
