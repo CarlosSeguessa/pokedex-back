@@ -57,7 +57,7 @@ PASSWORD varchar
 );
 ``` 
 
-## Insert the data that is in the data.txt file into your database
+## Insert the data that is in the [data.txt](https://github.com/CarlosSeguessa/pokedex-back/blob/master/data.txt) file into your database
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
