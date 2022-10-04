@@ -12,7 +12,7 @@ const registro = async (req, res) => {
     if (user.rowCount > 0) {
       return res.status(400).json({
         data: [],
-        message: "Ya existe un usuario con ese correo",
+        message: "There is already a user with that email",
         success: false,
       });
     }
@@ -30,17 +30,10 @@ const registro = async (req, res) => {
       "insert into users(mail, name, password) values($1, $2, $3)",
       [mail, name, passwordHashed]
     );
-    const token = jwt.sign(
-      {
-        name: user.rows[0].name,
-        mail: mail,
-      },
-      TOKEN_SECRET
-    );
 
     return res
       .status(200)
-      .json({ data: [newUser], message: "Usuario creado", success: true });
+      .json({ data: [newUser], message: "created user", success: true });
   } catch (error) {}
 };
 
@@ -53,7 +46,7 @@ const login = async (req, res) => {
     if (user.rowCount === 0) {
       return res.status(400).json({
         data: [],
-        message: "Usuario desconocido",
+        message: "Unknown user",
         success: false,
       });
     }
@@ -66,7 +59,7 @@ const login = async (req, res) => {
     if (!contrasenhaValidada) {
       return res
         .status(400)
-        .json({ success: false, message: "Password inválido" });
+        .json({ success: false, message: "Invalid password" });
     }
 
     const token = jwt.sign(
@@ -74,12 +67,15 @@ const login = async (req, res) => {
         name: user.rows[0].name,
         mail: mail,
       },
-      TOKEN_SECRET
+      TOKEN_SECRET,
+      {
+        expiresIn: "10h",
+      }
     );
 
     return res
       .status(200)
-      .json({ success: true, message: "Log-in con exito", token });
+      .json({ success: true, message: "Successful login", token });
   } catch (error) {
     console.log(error);
   }
