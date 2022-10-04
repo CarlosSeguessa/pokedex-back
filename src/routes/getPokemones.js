@@ -1,4 +1,5 @@
 const express = require("express");
+const { verifyToken } = require("../middleware/jw-validate");
 const {
   getPokemones,
   getPokemonesById,
@@ -7,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.get("/pokemones", getPokemones);
+router.get("/pokemones", verifyToken, getPokemones);
 router.get("/pokemones/:id", getPokemonesById);
 router.post("/pokemones", addPokemon);
 
