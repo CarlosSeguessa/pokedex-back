@@ -1,12 +1,13 @@
+const { config } = require("dotenv");
 const jwt = require("jsonwebtoken");
-
-const TOKEN_SECRET = "UnaClaveParaFirmarElToken";
+config();
+const TOKEN_SECRET = process.env.TOKEN;
 
 const verifyToken = (req, res, next) => {
   try {
     const token = req.header("auth-token");
 
-    if (!token) {
+    if (!token || token === "null") {
       return res.status(403).json({ error: "Acceso denegado" });
     }
 
