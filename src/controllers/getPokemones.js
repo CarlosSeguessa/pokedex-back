@@ -65,6 +65,19 @@ const addPokemon = async (req, res) => {
       sdef,
       spd,
     } = req.body;
+
+    // evitar que haya pokemones duplicados
+    const namePokemon = await db.query(
+      "select * from pokemones where name = $1",
+      [name]
+    );
+    if (namePokemon.rowCount > 0) {
+      return res.status(400).json({
+        success: false,
+        message: "El pokemon ya existe",
+      });
+    }
+
     const response = await db.query(
       "insert into pokemones(name, img, type1, type2, height, weight, moves, description, cardcolor) values($1, $2, $3, $4, $5, $6, $7, $8, $9 ) returning *",
       [name, img, type1, type2, height, weight, moves, description, cardcolor]
