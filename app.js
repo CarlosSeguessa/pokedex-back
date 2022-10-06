@@ -1,4 +1,4 @@
-const auth = require("../pokedex-back/src/routes/auth");
+const auth = require("./src/routes/auth");
 const cors = require("cors");
 const express = require("express");
 
