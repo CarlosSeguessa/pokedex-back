@@ -15,7 +15,7 @@ const getPokemones = async (req, res) => {
     res.status(200).json({
       data: response.rows,
       success: true,
-      message: "Pokemones listados correctamente",
+      message: "Pokemon listed correctly",
     });
   } catch (error) {
     console.error(error);
@@ -39,7 +39,7 @@ const getPokemonesById = async (req, res) => {
     res.status(200).json({
       data: response.rows,
       success: true,
-      message: "Pokemones listados correctamente",
+      message: "Pokemon listed correctly",
     });
   } catch (error) {
     console.error(error);
@@ -66,7 +66,7 @@ const addPokemon = async (req, res) => {
       spd,
     } = req.body;
 
-    // evitar que haya pokemones duplicados
+    // evita que haya pokemones duplicados
     const namePokemon = await db.query(
       "select * from pokemones where name = $1",
       [name]
@@ -74,7 +74,7 @@ const addPokemon = async (req, res) => {
     if (namePokemon.rowCount > 0) {
       return res.status(400).json({
         success: false,
-        message: "El pokemon ya existe",
+        message: "the pokemon already exists",
       });
     }
 
@@ -90,7 +90,7 @@ const addPokemon = async (req, res) => {
     res.status(200).json({
       data: { ...response.rows[0], ...responseStats.rows[0] },
       success: true,
-      message: "Pokemon creado correctamente",
+      message: "pokemon created successfully",
     });
   } catch (error) {
     console.error(error);
