@@ -6,9 +6,7 @@ const { TOKEN_SECRET } = require("../middleware/jw-validate");
 const registro = async (req, res) => {
   try {
     const { mail, name, password } = req.body;
-
     const user = await db.query("select * from users where mail = $1", [mail]);
-
     if (user.rowCount > 0) {
       return res.status(400).json({
         data: [],
@@ -39,6 +37,7 @@ const registro = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log("Entro");
     const { mail, password } = req.body;
 
     const user = await db.query("select * from users where mail = $1", [mail]);
