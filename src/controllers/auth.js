@@ -66,10 +66,7 @@ const login = async (req, res) => {
         name: user.rows[0].name,
         mail: mail,
       },
-      TOKEN_SECRET,
-      {
-        expiresIn: "10h",
-      }
+      TOKEN_SECRET
     );
 
     return res
