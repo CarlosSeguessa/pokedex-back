@@ -1,4 +1,4 @@
-# pokedex-back
+# pokedex-back-end
 Back-end proyect for [Senpai Academy bootcamp](https://senpaiacademy.com/bootcamp/full-stack-web-developer/) made with [Node.js](https://github.com/nodejs/node) and [Express](https://github.com/expressjs/express)
 
 ## Avaible Scripts
@@ -59,5 +59,5 @@ PASSWORD varchar
 
 ## Insert the data that is in the [data.txt](https://github.com/CarlosSeguessa/pokedex-back/blob/master/data.txt) file into your database
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
